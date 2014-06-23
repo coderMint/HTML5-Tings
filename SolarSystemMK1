@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        background-color:#000000;
+      }
+
+      h1 {
+        font-family: "Courier New", Courier, monospace;
+        font-style: italic;
+        color: grey;
+      }
+     /* #myCanvas {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        width: 1200px;
+        height: 600px;
+        background-color: '#000000'
+        }*/
+
+    </style>
+  </head>
+  <body>
+
+    <h1>This is what a kick ass Solar System looks like! :)</h1>
+
+    <div id="container"></div>
+    <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.0.2.min.js"></script>
+    <!--<script defer="defer">-->
+
+
+<script>
+      window.onload = function() {
+          var stage = new Kinetic.Stage({
+          container: 'container',
+          width: (window.innerWidth) ,  
+          height: (window.innerHeight)
+        });
+
+//instead of trying to move a mountain by re-aligning the canvas, try just offsetting the circles by a lot
+
+        var layer = new Kinetic.Layer();           
+        /*
+         * leave center point positioned
+         * at the default which is the top left
+         * corner of the rectangle...This refers to the blue rectangle
+         */
+        var coolSun = new Kinetic.Circle({
+          x: 600,
+          y: 300,
+          radius: 25,          
+          fill: '#00D2FF',
+          stroke: 'red',
+          strokeWidth: 4,
+          offset: {x:5,y:5}
+        });
+
+        var pluto = new Kinetic.Circle({
+          x: 660,
+          y: 210,
+          radius: 4,          
+          fill: 'white',
+          stroke: 'black',
+          strokeWidth: 2,
+          offset: {x:200, y:-45}
+        });
+        
+
+        var neptune = new Kinetic.Circle({
+          x: 640,
+          y: 230,
+          radius: 8,          
+          fill: 'green',
+          stroke: 'white',
+          strokeWidth: 2,
+          offset: {x:180, y:-45}
+        });
+
+        var uranus = new Kinetic.Circle({
+          x: 620,
+          y: 250,
+          radius: 8,          
+          fill: 'maroon',
+          stroke: 'white',
+          strokeWidth: 2,
+          offset: {x:150, y:-45}
+        });
+
+
+        var saturn = new Kinetic.Circle({
+          x: 600,
+          y: 270,
+          radius: 13,          
+          fill: 'silver',
+          stroke: 'white',
+          strokeWidth: 2,
+          offset: {x:70, y:-35}
+        });
+
+
+         var jupiter = new Kinetic.Circle({
+          x: 580,
+          y: 290,
+          radius: 14,          
+          fill: 'brown',
+          stroke: 'white',
+          strokeWidth: 2,
+          offset: {x:90, y:-45}
+        });
+
+        var mars = new Kinetic.Circle({
+          x: 560,
+          y: 310,
+          radius: 7,          
+          fill: 'red',
+          stroke: 'green',
+          strokeWidth: 2,
+          offset: {x:110, y:-55}
+        });        
+
+        var earth = new Kinetic.Circle({
+          x: 540,
+          y: 330,
+          radius: 8,          
+          fill: 'blue',
+          stroke: 'grey',
+          strokeWidth: 2,
+          offset: {x:130, y:-65}
+        });
+        /*
+         * move center point to the center
+         * of the rectangle with offset
+         */
+        var venus = new Kinetic.Circle({
+          x: 520,
+          y: 355,
+          radius:6,
+          fill: 'yellow',
+          stroke: 'black',
+          strokeWidth: 4,
+          offset: {x:150, y:-75}
+        });
+
+        /*
+         * move center point outside of the rectangle
+         * with offset
+         */
+        var mercury = new Kinetic.Circle({
+          x: 500,
+          y: 375,
+          radius:5,
+          fill: 'red',
+          stroke: 'white',
+          strokeWidth: 2,
+          offset: {x:-200, y:100}
+        });
+
+        layer.add(coolSun);
+        layer.add(pluto);
+        layer.add(neptune);
+        layer.add(uranus);
+        layer.add(saturn);
+        layer.add(jupiter);
+        layer.add(mars);
+        layer.add(earth);
+        layer.add(venus);
+        layer.add(mercury);
+        stage.add(layer);
+
+        // one revolution per 4 seconds
+        var angularSpeed = 360 / 4;
+        var anim = new Kinetic.Animation(function(frame) {
+          var angleDiff = frame.timeDiff * angularSpeed / 1000;
+
+          //These next lines determine the speed at which the planets rotate
+
+          coolSun.rotate(angleDiff);
+          pluto.rotate(angleDiff*2);
+          neptune.rotate(angleDiff);
+          uranus.rotate(angleDiff*1.5);
+          saturn.rotate(angleDiff*0.2);
+          jupiter.rotate(angleDiff*0.08);
+          mars.rotate(angleDiff*0.8);
+          earth.rotate(angleDiff*0.6);
+          venus.rotate(angleDiff/3);
+          mercury.rotate(angleDiff/3);
+        }, layer);
+
+        anim.start();
+      };
+</script>
+    <!--</script>-->
+  </body>
+</html> 
